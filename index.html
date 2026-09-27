@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Duties Café — Coffee. Food. Moments.</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f5f0;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(247, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ddd8ce;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #222;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      opacity: 0.55;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 7% 80px;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(55px, 9vw, 110px);
+      line-height: 0.95;
+      font-weight: 500;
+      letter-spacing: -5px;
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      max-width: 500px;
+      color: #666;
+      font-size: 17px;
+      margin-bottom: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #222;
+      color: white;
+      padding: 14px 25px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #555;
+      transform: translateY(-2px);
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 7%;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 500;
+      margin-bottom: 45px;
+      letter-spacing: -1px;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: #ebe7df;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about p {
+      color: #555;
+      max-width: 550px;
+      font-size: 17px;
+    }
+
+    .about-box {
+      border: 1px solid #aaa398;
+      padding: 50px;
+      min-height: 300px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .about-box span {
+      font-size: 70px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    /* MENU */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid #ccc6bb;
+    }
+
+    .menu-item {
+      padding: 25px 5px;
+      border-bottom: 1px solid #ccc6bb;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .menu-item h3 {
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .menu-item p {
+      color: #777;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .price {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* INFO */
+
+    .info {
+      background: #222;
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .info h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      color: #aaa;
+    }
+
+    .info p {
+      font-size: 16px;
+    }
+
+    /* FORM */
+
+    .contact {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 100px;
+    }
+
+    .contact-text p {
+      color: #666;
+      max-width: 400px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-bottom: 1px solid #bbb;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-bottom: 1px solid #222;
+    }
+
+    form button {
+      width: fit-content;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #formMessage {
+      display: none;
+      margin-top: 10px;
+      color: #426b45;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 7%;
+      border-top: 1px solid #ddd8ce;
+      display: flex;
+      justify-content: space-between;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+
+      nav {
+        padding: 16px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        padding: 120px 5% 70px;
+      }
+
+      h1 {
+        font-size: 65px;
+      }
+
+      section {
+        padding: 75px 5%;
+      }
+
+      .about,
+      .contact {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .about-box {
+        min-height: 220px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="logo">DUTIES.</div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Coffee · Food · Community
+      </div>
+
+      <h1>
+        Duties<br>
+        Café.
+      </h1>
+
+      <p>
+        A quiet corner for good coffee, honest food,
+        meaningful conversations and slow moments.
+      </p>
+
+      <a href="#contact" class="button">
+        Reserve a Table
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+
+    <div>
+      <div class="eyebrow">Our Story</div>
+
+      <h2 class="section-title">
+        Simple things,<br>
+        done well.
+      </h2>
+
+      <p>
+        Duties Café is built around a simple idea:
+        great coffee, fresh food and a space where
+        you actually want to stay.
+        Whether you're meeting friends, working quietly
+        or taking a break from the day, there's a seat
+        waiting for you.
+      </p>
+    </div>
+
+    <div class="about-box">
+      <span>01<br>—<br>25</span>
+    </div>
+
+  </section>
+
+
+  <!-- MENU -->
+
+  <section id="menu">
+
+    <div class="eyebrow">Selected Menu</div>
+
+    <h2 class="section-title">
+      What we're serving.
+    </h2>
+
+    <div class="menu-grid">
+
+      <div class="menu-item">
+        <div>
+          <h3>Classic Cappuccino</h3>
+          <p>Espresso · steamed milk · foam</p>
+        </div>
+        <div class="price">₹160</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <h3>Iced Latte</h3>
+          <p>Espresso · chilled milk · ice</p>
+        </div>
+        <div class="price">₹180</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <h3>Cold Brew</h3>
+          <p>Slow brewed · smooth · refreshing</p>
+        </div>
+        <div class="price">₹190</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <h3>Classic Veg Sandwich</h3>
+          <p>Fresh vegetables · house sauce</p>
+        </div>
+        <div class="price">₹220</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <h3>Truffle Fries</h3>
+          <p>Crispy fries · parmesan · herbs</p>
+        </div>
+        <div class="price">₹240</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <h3>Chocolate Brownie</h3>
+          <p>Warm chocolate brownie</p>
+        </div>
+        <div class="price">₹170</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INFORMATION -->
+
+  <section class="info" id="visit">
+
+    <div>
+      <h3>Opening Hours</h3>
+      <p>
+        Monday – Friday<br>
+        8:00 AM – 10:00 PM
+        <br><br>
+        Saturday – Sunday<br>
+        9:00 AM – 11:00 PM
+      </p>
+    </div>
+
+    <div>
+      <h3>Location</h3>
+      <p>
+        24 Café Street<br>
+        Your City, India
+      </p>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>
+        +91 98765 43210<br>
+        hello@dutiescafe.com
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT / RESERVATION FORM -->
+
+  <section class="contact" id="contact">
+
+    <div class="contact-text">
+
+      <div class="eyebrow">Get in touch</div>
+
+      <h2 class="section-title">
+        Let's make<br>
+        a plan.
+      </h2>
+
+      <p>
+        Want to reserve a table, plan a small gathering,
+        or simply ask us something? Drop us a message.
+      </p>
+
+    </div>
+
+
+    <form id="contactForm">
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        required
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email address"
+        required
+      />
+
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone number"
+      />
+
+      <select name="purpose">
+
+        <option value="">
+          What can we help with?
+        </option>
+
+        <option>
+          Table Reservation
+        </option>
+
+        <option>
+          Private Event
+        </option>
+
+        <option>
+          General Enquiry
+        </option>
+
+      </select>
+
+      <textarea
+        name="message"
+        placeholder="Your message..."
+        required
+      ></textarea>
+
+      <button class="button" type="submit">
+        Send Message
+      </button>
+
+      <div id="formMessage">
+        Thanks! Your message has been received.
+      </div>
+
+    </form>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>
+      © 2026 Duties Café
+    </div>
+
+    <div>
+      Coffee. Food. Moments.
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    const form = document.getElementById("contactForm");
+    const message = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      message.style.display = "block";
+
+      form.reset();
+
+    });
+
+  </script>
+
+</body>
+</html>
